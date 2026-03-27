@@ -47,7 +47,7 @@ const studies = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-blue-500/30 py-20 px-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-[1600px] mx-auto">
 
         <header className="mb-20 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-200 bg-white text-blue-700 text-sm font-semibold mb-8 shadow-sm">
@@ -86,41 +86,11 @@ export default function Home() {
           })}
         </div>
 
-        {/* Desktop Lattice View */}
-        <div className="hidden md:grid grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
-           {/* Left Column */}
-           <div className="flex flex-col gap-8 transform -translate-y-12">
-              <StudyCard study={studies[1]} /> {/* N+1 Queries */}
-              <StudyCard study={studies[2]} /> {/* Pagination */}
-           </div>
-
-           {/* Center Column: Rate Limiting (Hero Card) */}
-           <div className="flex flex-col relative z-20">
-              {/* Glowing Aura */}
-              <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full w-full h-full -z-10 animate-pulse" />
-              
-              <Link href={studies[0].href} className="group bg-white border-2 border-blue-400 rounded-3xl p-10 shadow-2xl hover:shadow-blue-500/20 transition-all block relative overflow-hidden transform scale-110 hover:scale-115">
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border bg-blue-50 border-blue-200 shadow-inner`}>
-                  <ShieldCheck className={`w-8 h-8 text-blue-600`} />
-                </div>
-                <h3 className="text-2xl font-extrabold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">
-                  Rate Limiting
-                </h3>
-                <p className="text-slate-600 font-medium leading-relaxed mb-10 text-lg">
-                  Protecting systems from abuse and sheer volume using Redis token buckets.
-                </p>
-                <div className="absolute bottom-8 left-8 right-8 flex items-center justify-between font-bold text-blue-500 group-hover:text-blue-600 transition-colors">
-                  <span>Start Here</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                </div>
-              </Link>
-           </div>
-
-           {/* Right Column */}
-           <div className="flex flex-col gap-8 transform translate-y-12">
-              <StudyCard study={studies[3]} /> {/* Database Indexing */}
-              <StudyCard study={studies[4]} /> {/* AI & Inventory */}
-           </div>
+        {/* Desktop View */}
+        <div className="hidden md:grid grid-cols-5 gap-6 items-stretch w-full">
+          {studies.map((study, idx) => (
+            <StudyCard key={idx} study={study} />
+          ))}
         </div>
 
       </div>
